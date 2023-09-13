@@ -73,8 +73,8 @@ jobs:
         Copy-Item -Path "C:\actions-runner\_work\output\Content\D_C\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\PackageTmp\*" -Destination "C:\inetpub\wwwroot"
         Start-Process powershell -ArgumentList "iisreset /start" -Verb RunAs
 
-    - name: delete the folder where file gets unzipped to allow new builds gracefully
-      shell: powershell
-      run: Remove-Item 'C:\actions-runner\_work\output' -Recurse
+    # - name: delete the folder where file gets unzipped to allow new builds gracefully
+    #   shell: powershell
+    #   run: Remove-Item 'C:\actions-runner\_work\output' -Recurse
       
     
