@@ -41,36 +41,27 @@ jobs:
     - name: Uploading the application artifacts to Amazon S3
       shell: cmd
       run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp "D:\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\HelloWorldSampleApp.zip" s3://dotnet-cicd-bucket/
-      
-    - name: Download the zip file from S3
-      shell: cmd
-      run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip .
-      
-    - name: Unzipping the Zip file
+
+  deploy:
+    runs-on: [ self-hosted, Windows, X64 ]
+    defaults:
+      run:
+        shell: cmd
+    steps:
+    
+    - name: Download AWS CLI Latest version
       shell: powershell
-      run: |
-        Expand-Archive -Path .\HelloWorldSampleApp.zip -DestinationPath .
-        ls HelloWorldSampleApp\obj\Release\Package\PackageTmp
+      run: msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
+    - name: Set AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Set up SSH
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H 13.232.147.60 >> ~/.ssh/known_hosts
-        
-    - name: Copy File to EC2
-      run: scp -i ~/.ssh/id_rsa /path/to/local/file ec2-user@13.232.147.60:/C:/inetpub/wwwroot/
-        
-    # - name: Copy Build Folder
-    #   run: scp -r HelloWorldSampleApp\obj\Release\Package\PackageTmp\* ip-172-31-2-206.ap-south-1.compute.internal:/C:/inetpub/wwwroot
-    #   env:
-    #     SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+    - name: Download the zip file from S3 to EC2 folder
+      shell: cmd
+      run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip C:\actions-runner\_work
 
-    # - name: Deploy to IIS Server
-    #   shell: powershell
-    #   run: |
-    #     Start-Process powershell -ArgumentList "iisreset /stop" -Verb RunAs
-    #     Copy-Item ./publish/* C:/inetpub/wwwroot/ -Recurse -Force
-    #     Start-Process powershell -ArgumentList "iisreset /start" -Verb RunAs
-
+      
+    
