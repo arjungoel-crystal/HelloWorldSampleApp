@@ -43,6 +43,7 @@ jobs:
       run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp "D:\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\HelloWorldSampleApp.zip" s3://dotnet-cicd-bucket/
 
   deploy:
+    needs: build
     runs-on: [ self-hosted, Windows, X64 ]
     defaults:
       run:
