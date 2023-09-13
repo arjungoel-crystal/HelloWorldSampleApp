@@ -41,3 +41,16 @@ jobs:
     - name: Uploading the application artifacts to Amazon S3
       shell: cmd
       run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp "D:\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\HelloWorldSampleApp.zip" s3://dotnet-cicd-bucket/
+      
+    - name: Download the zip file from S3 and Unzip
+      shell: cmd
+      run: |
+        C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/*.zip .
+
+    - name: Deploy to IIS Server
+      shell: powershell
+      run: |
+        Start-Process powershell -ArgumentList "iisreset /stop" -Verb RunAs
+        Copy-Item ./publish/* C:/inetpub/wwwroot/ -Recurse -Force
+        Start-Process powershell -ArgumentList "iisreset /start" -Verb RunAs
+
