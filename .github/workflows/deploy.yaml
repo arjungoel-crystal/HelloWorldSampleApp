@@ -1,4 +1,4 @@
-name: "Deploying a CI/CD for .NET sample app using GitHub Actions"
+name: "Deploying a CI/CD for .NET sample app in ASP.NET 4.7 using GitHub Actions"
 
 on:
   workflow_dispatch:
@@ -8,42 +8,42 @@ on:
     branches: [ "master" ]
 
 jobs:
-  # build:
+  build:
 
-  #   runs-on: windows-latest
-  #   defaults:
-  #     run:
-  #       shell: cmd
+     runs-on: windows-latest
+     defaults:
+       run:
+         shell: cmd
 
-  #   steps:
-  #   - name: Checkout code repository
-  #     uses: actions/checkout@v3
+     steps:
+     - name: Checkout code repository
+       uses: actions/checkout@v3
       
-  #   - name: Setup MSBuild
-  #     uses: microsoft/setup-msbuild@v1
+     - name: Setup MSBuild
+       uses: microsoft/setup-msbuild@v1
 
-  #   - name: Setup NuGet
-  #     uses: NuGet/setup-nuget@v1.0.5
+     - name: Setup NuGet
+       uses: NuGet/setup-nuget@v1.0.5
 
-  #   - name: Restore Packages
-  #     run: nuget restore HelloWorldSampleApp.sln
+     - name: Restore Packages
+       run: nuget restore HelloWorldSampleApp.sln
 
-  #   - name: Build solution
-  #     run: msbuild HelloWorldSampleApp.sln /p:Configuration=Release /p:DeployOnBuild=true
+     - name: Build solution
+       run: msbuild HelloWorldSampleApp.sln /p:Configuration=Release /p:DeployOnBuild=true
 
-  #   - name: Set AWS credentials
-  #     uses: aws-actions/configure-aws-credentials@v1
-  #     with:
-  #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-  #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #       aws-region: ${{ secrets.AWS_REGION }}
+     - name: Set AWS credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+         aws-region: ${{ secrets.AWS_REGION }}
         
-  #   - name: Uploading the application artifacts to Amazon S3
-  #     shell: cmd
-  #     run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp "D:\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\HelloWorldSampleApp.zip" s3://dotnet-cicd-bucket/
+     - name: Uploading the application artifacts to Amazon S3
+       shell: cmd
+       run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp "D:\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\HelloWorldSampleApp.zip" s3://dotnet-cicd-bucket/
 
   deploy:
-    # needs: build
+    needs: build
     runs-on: [ self-hosted, Windows, X64 ]
     defaults:
       run:
