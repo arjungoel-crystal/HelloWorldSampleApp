@@ -42,10 +42,13 @@ jobs:
       shell: cmd
       run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp "D:\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\HelloWorldSampleApp.zip" s3://dotnet-cicd-bucket/
       
-    - name: Download the zip file from S3 and Unzip
+    - name: Download the zip file from S3
       shell: cmd
-      run: |
-        C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip .
+      run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip .
+      
+    - name: Unzipping the Zip file
+      shell: powershell
+      run: Expand-Archive -Path .\HelloWorldSampleApp.zip -DestinationPath .
 
     # - name: Deploy to IIS Server
     #   shell: powershell
