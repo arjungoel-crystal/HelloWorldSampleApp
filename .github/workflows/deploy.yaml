@@ -65,11 +65,6 @@ jobs:
       shell: powershell
       run: |
         Expand-Archive -Path "C:\actions-runner\_work\*.zip" -DestinationPath "C:\actions-runner\_work\output"
-
-    - name: Delete the build folder from wwwroot for next build to happen gracefully
-      shell: powershell
-      run: |
-        Remove-Item 'C:\inetpub\wwwroot\bin' -Recurse
         
     - name: Deploy to IIS Server
       shell: powershell
