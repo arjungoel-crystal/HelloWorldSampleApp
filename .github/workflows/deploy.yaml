@@ -66,11 +66,11 @@ jobs:
       run: |
         Expand-Archive -Path "C:\actions-runner\_work\*.zip" -DestinationPath "C:\actions-runner\_work\output"
 
-    # - name: Deploy to IIS Server
-    #   shell: powershell
-    #   run: |
-    #     Start-Process powershell -ArgumentList "iisreset /stop" -Verb RunAs
-    #     Start-Process powershell Copy-Item "C:\actions-runner\_work\Content\D_C\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\PackageTmp\*" C:/inetpub/wwwroot/ -Recurse -Force -Verb RunAs
+    - name: Deploy to IIS Server
+      shell: powershell
+      run: |
+        Start-Process powershell -ArgumentList "iisreset /stop" -Verb RunAs
+        Start-Process powershell Copy-Item "C:\actions-runner\_work\output\Content\D_C\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\PackageTmp\*" C:/inetpub/wwwroot/ -Recurse -Force -Verb RunAs
     #     Start-Process powershell -ArgumentList "iisreset /start" -Verb RunAs
 
       
