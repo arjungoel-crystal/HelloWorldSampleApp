@@ -64,7 +64,7 @@ jobs:
     - name: Unzipping the Zip file
       shell: powershell
       run: |
-        Expand-Archive -Path "C:\output\*.zip" -DestinationPath "C:\actions-runner\_work\output"
+        Expand-Archive -Path "C:\actions-runner\_work\output\*.zip" -DestinationPath "C:\actions-runner\_work\output"
 
     # - name: Deploy to IIS Server
     #   shell: powershell
