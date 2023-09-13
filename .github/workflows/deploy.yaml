@@ -24,3 +24,6 @@ jobs:
 
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.5
+
+    - name: Restore Packages
+      run: nuget restore MySolution.sln
