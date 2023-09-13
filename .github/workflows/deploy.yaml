@@ -53,7 +53,7 @@ jobs:
         ls HelloWorldSampleApp\obj\Release\Package\PackageTmp
         
     - name: Copy Build Folder
-      run: scp -r D:\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\PackageTmp\* Administrator@ec2-13.232.147.60:/C:\inetpub\wwwroot
+      run: scp -r HelloWorldSampleApp\obj\Release\Package\PackageTmp\* Administrator@ec2-13.232.147.60:/C:\inetpub\wwwroot
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
