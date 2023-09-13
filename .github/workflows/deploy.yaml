@@ -1,0 +1,28 @@
+name: "Deploying a CI/CD for .NET sample app using GitHub Actions"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: [ self-hosted, Windows, X64 ]
+    defaults:
+      run:
+        shell: cmd
+
+    steps:
+    - name: Checkout code repository
+      uses: actions/checkout@v3
+      
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '4.7'
+        
+    - name: Print dotnet version
+      run: dotnet --version
