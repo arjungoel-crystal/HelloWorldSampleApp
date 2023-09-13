@@ -62,8 +62,8 @@ jobs:
       run: |
         # Remove-Item 'C:\inetpub\wwwroot\bin' -Recurse
         # Remove-Item 'C:\inetpub\wwwroot\bin\Web' 
-        Remove-Item 'C:\inetpub\wwwroot\bin\Global.asax'
-        Remove-Item 'C:\inetpub\wwwroot\bin\HelloWorldForm.aspx'
+        # Remove-Item 'C:\inetpub\wwwroot\bin\Global.asax'
+        # Remove-Item 'C:\inetpub\wwwroot\bin\HelloWorldForm.aspx'
 
     - name: Download the zip file from S3 to EC2 folder
       shell: cmd
