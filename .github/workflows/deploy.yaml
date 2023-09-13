@@ -57,6 +57,12 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
+    - name: Delete the build folder from wwwroot for next build to happen gracefully
+      shell: powershell
+      run: |
+        Remove-Item 'C:\inetpub\wwwroot\bin' -Recurse
+        Remove-Item 'C:\inetpub\wwwroot\bin\Web.config' 'C:\inetpub\wwwroot\bin\Global.asax'
+
     - name: Download the zip file from S3 to EC2 folder
       shell: cmd
       run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip "C:\actions-runner\_work"
