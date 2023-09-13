@@ -60,9 +60,18 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Download the zip file from S3 to EC2 folder
-      shell: cmd
-      run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip "C:\Windows\Temp"
+    - uses: keithweaver/aws-s3-github-action@v1.0.0
+      with:
+        command: cp
+        source: s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip
+        destination: C:\Windows\Temp
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws_region: ${{ secrets.AWS_REGION }}
+
+    # - name: Download the zip file from S3 to EC2 folder
+    #   shell: cmd
+    #   run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip "C:\Windows\Temp"
 
       
     
