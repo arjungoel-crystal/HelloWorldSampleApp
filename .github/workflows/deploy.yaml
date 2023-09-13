@@ -61,7 +61,7 @@ jobs:
       shell: powershell
       run: |
         # Remove-Item 'C:\inetpub\wwwroot\bin' -Recurse
-        Remove-Item 'C:\inetpub\wwwroot\bin\Web' 
+        # Remove-Item 'C:\inetpub\wwwroot\bin\Web' 
         Remove-Item 'C:\inetpub\wwwroot\bin\Global.asax'
         Remove-Item 'C:\inetpub\wwwroot\bin\HelloWorldForm.aspx'
 
