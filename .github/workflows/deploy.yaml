@@ -47,10 +47,10 @@ jobs:
       run: |
         C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/*.zip .
 
-    - name: Deploy to IIS Server
-      shell: powershell
-      run: |
-        Start-Process powershell -ArgumentList "iisreset /stop" -Verb RunAs
-        Copy-Item ./publish/* C:/inetpub/wwwroot/ -Recurse -Force
-        Start-Process powershell -ArgumentList "iisreset /start" -Verb RunAs
+    # - name: Deploy to IIS Server
+    #   shell: powershell
+    #   run: |
+    #     Start-Process powershell -ArgumentList "iisreset /stop" -Verb RunAs
+    #     Copy-Item ./publish/* C:/inetpub/wwwroot/ -Recurse -Force
+    #     Start-Process powershell -ArgumentList "iisreset /start" -Verb RunAs
 
