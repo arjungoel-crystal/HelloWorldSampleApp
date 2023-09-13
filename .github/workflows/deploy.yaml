@@ -64,14 +64,14 @@ jobs:
     - name: Unzipping the Zip file
       shell: powershell
       run: |
-        Expand-Archive -Path "C:\actions-runner\_work\HelloWorldSampleApp.zip" -DestinationPath "C:\actions-runner\_work"
+        Expand-Archive -Path "C:\actions-runner\_work\HelloWorldSampleApp.zip" -DestinationPath "C:\actions-runner\_work\output"
 
-    - name: Deploy to IIS Server
-      shell: powershell
-      run: |
-        Start-Process powershell -ArgumentList "iisreset /stop" -Verb RunAs
-        Copy-Item "C:\actions-runner\_work\Content\D_C\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\PackageTmp\*" C:/inetpub/wwwroot/ -Recurse -Force
-        Start-Process powershell -ArgumentList "iisreset /start" -Verb RunAs
+    # - name: Deploy to IIS Server
+    #   shell: powershell
+    #   run: |
+    #     Start-Process powershell -ArgumentList "iisreset /stop" -Verb RunAs
+    #     Copy-Item "C:\actions-runner\_work\Content\D_C\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\PackageTmp\*" C:/inetpub/wwwroot/ -Recurse -Force
+    #     Start-Process powershell -ArgumentList "iisreset /start" -Verb RunAs
 
       
     
