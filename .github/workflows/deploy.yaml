@@ -27,3 +27,6 @@ jobs:
 
     - name: Restore Packages
       run: nuget restore HelloWorldSampleApp.sln
+
+    - name: Build solution
+      run: msbuild HelloWorldSampleApp.sln -t:rebuild -property:Configuration=Release
