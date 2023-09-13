@@ -30,3 +30,6 @@ jobs:
 
     - name: Build solution
       run: msbuild HelloWorldSampleApp.sln -t:rebuild -property:Configuration=Release
+
+    - name: Publish 
+      run: msbuild HelloWorldSampleApp.sln /p:DeployOnBuild=true
