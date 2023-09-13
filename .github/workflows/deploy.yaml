@@ -45,7 +45,7 @@ jobs:
     - name: Download the zip file from S3 and Unzip
       shell: cmd
       run: |
-        C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/*.zip .
+        C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip .
 
     # - name: Deploy to IIS Server
     #   shell: powershell
