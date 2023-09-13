@@ -50,7 +50,7 @@ jobs:
       shell: powershell
       run: |
         Expand-Archive -Path .\HelloWorldSampleApp.zip -DestinationPath .
-        ls HelloWorldSampleApp\obj
+        ls HelloWorldSampleApp\obj\Release\Package\PackageTmp
 
     # - name: Deploy to IIS Server
     #   shell: powershell
