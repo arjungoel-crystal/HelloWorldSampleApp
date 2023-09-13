@@ -59,18 +59,18 @@ jobs:
 
     - name: Download the zip file from S3 to EC2 folder
       shell: cmd
-      run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip "C:\actions-runner\_work"
+      run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip "C:\output"
 
     - name: Unzipping the Zip file
       shell: powershell
       run: |
-        Expand-Archive -Path "C:\actions-runner\_work\HelloWorldSampleApp.zip" -DestinationPath "C:\actions-runner\_work"
+        Expand-Archive -Path "C:\output\HelloWorldSampleApp.zip" -DestinationPath "C:\output"
 
-    - name: Deploy to IIS Server
-      shell: powershell
-      run: |
-        Start-Process powershell -ArgumentList "iisreset /stop" -Verb RunAs
-        Start-Process powershell -ArgumentList Copy-Item "C:\actions-runner\_work\Content\D_C\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\PackageTmp\*" C:/inetpub/wwwroot/ -Recurse -Force -Verb RunAs
+    # - name: Deploy to IIS Server
+    #   shell: powershell
+    #   run: |
+    #     Start-Process powershell -ArgumentList "iisreset /stop" -Verb RunAs
+    #     Start-Process powershell Copy-Item "C:\actions-runner\_work\Content\D_C\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\PackageTmp\*" C:/inetpub/wwwroot/ -Recurse -Force -Verb RunAs
     #     Start-Process powershell -ArgumentList "iisreset /start" -Verb RunAs
 
       
