@@ -70,7 +70,7 @@ jobs:
       shell: powershell
       run: |
         Start-Process powershell -ArgumentList "iisreset /stop" -Verb RunAs
-        Copy-Item "C:\actions-runner\_work\Content\D_C\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\PackageTmp\*" C:/inetpub/wwwroot/ -Recurse -Force
+        Start-Process powershell -ArgumentList Copy-Item "C:\actions-runner\_work\Content\D_C\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\PackageTmp\*" C:/inetpub/wwwroot/ -Recurse -Force -Verb RunAs
     #     Start-Process powershell -ArgumentList "iisreset /start" -Verb RunAs
 
       
