@@ -30,3 +30,14 @@ jobs:
 
     - name: Build solution
       run: msbuild HelloWorldSampleApp.sln /p:Configuration=Release /p:DeployOnBuild=true
+
+    - name: Set AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+        
+    - name: Uploading the application artifacts to Amazon S3
+      shell: cmd
+      run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp "D:\a\HelloWorldSampleApp\HelloWorldSampleApp\HelloWorldSampleApp\obj\Release\Package\HelloWorldSampleApp.zip" s3://dotnet-cicd-bucket/
