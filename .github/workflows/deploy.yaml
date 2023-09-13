@@ -48,7 +48,9 @@ jobs:
       
     - name: Unzipping the Zip file
       shell: powershell
-      run: Expand-Archive -Path .\HelloWorldSampleApp.zip -DestinationPath .
+      run: |
+        Expand-Archive -Path .\HelloWorldSampleApp.zip -DestinationPath .
+        ls
 
     # - name: Deploy to IIS Server
     #   shell: powershell
