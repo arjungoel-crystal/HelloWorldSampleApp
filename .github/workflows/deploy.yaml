@@ -75,6 +75,6 @@ jobs:
 
     - name: delete the folder where file gets unzipped to allow new builds gracefully
       shell: powershell
-      run: Remove-Item 'C:\actions-runner\_work\output'
+      run: Remove-Item 'C:\actions-runner\_work\output -Recurse
       
     
