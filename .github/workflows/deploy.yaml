@@ -60,7 +60,7 @@ jobs:
     - name: Delete the build folder from wwwroot for next build to happen gracefully
       shell: powershell
       run: |
-        Remove-Item 'C:\inetpub\wwwroot\bin' -Recurse
+        # Remove-Item 'C:\inetpub\wwwroot\bin' -Recurse
         Remove-Item 'C:\inetpub\wwwroot\bin\Web.config' 
         Remove-Item 'C:\inetpub\wwwroot\bin\Global.asax'
         Remove-Item 'C:\inetpub\wwwroot\bin\HelloWorldForm.aspx'
