@@ -59,12 +59,12 @@ jobs:
 
     - name: Download the zip file from S3 to EC2 folder
       shell: cmd
-      run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip "C:\output"
+      run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip "C:\actions-runner\_work\output"
 
     - name: Unzipping the Zip file
       shell: powershell
       run: |
-        Expand-Archive -Path "C:\output\HelloWorldSampleApp.zip" -DestinationPath "C:\output"
+        Expand-Archive -Path "C:\output\*.zip" -DestinationPath "C:\actions-runner\_work\output"
 
     # - name: Deploy to IIS Server
     #   shell: powershell
