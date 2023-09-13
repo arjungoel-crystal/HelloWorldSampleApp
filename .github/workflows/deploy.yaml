@@ -62,7 +62,7 @@ jobs:
 
     - name: Download the zip file from S3 to EC2 folder
       shell: cmd
-      run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip C:\
+      run: C:\"Program Files"\Amazon\AWSCLIV2\aws s3 cp s3://dotnet-cicd-bucket/HelloWorldSampleApp.zip "C:\"
 
       
     
