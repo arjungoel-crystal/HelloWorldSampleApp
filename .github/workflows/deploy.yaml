@@ -10,7 +10,7 @@ on:
 jobs:
   build:
 
-    runs-on: [ self-hosted, Windows, X64 ]
+    runs-on: windows-latest
     defaults:
       run:
         shell: cmd
