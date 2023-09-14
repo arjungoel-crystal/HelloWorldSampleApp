@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <%Response.Write("Hello Kimbal Technologies") %>
+            <%Response.Write("Hello Kimbal Technologies 10x2y") %>
         </div>
     </form>
 </body>
